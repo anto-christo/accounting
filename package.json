@@ -15,15 +15,23 @@
   "scripts": {
     "test": "mocha tests",
     "server": "node start.js",
+    "server-master": "node server/master.js",
     "watch:server": "nodemon start.js",
     "electron": "EIO_WS_ENGINE=ws electron main.js",
     "electron-pack": "electron-packager . --overwrite",
     "install-native-deps": "electron-builder install-app-deps",
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "PORT=8081 webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev-master": "PORT=8080 webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",    
     "build": "node build/build.js"
   },
   "dependencies": {
-    "frappejs": "^0.0.8"
+    "bootstrap": "^4.1.1",
+    "feather-icons": "^4.7.3",
+    "frappe-datatable": "^0.0.9",
+    "frappejs": "^0.0.7",
+    "vue": "^2.5.2",
+    "vue-flatpickr-component": "^7.0.2",
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

@@ -15,13 +15,19 @@ import common from 'frappejs/common';
 import coreModels from 'frappejs/models';
 import models from '../models';
 import registerReportMethods from '../reports';
+import WebRTC from 'frappejs/webrtc/webrtc';
 
 frappe.init();
 frappe.registerLibs(common);
 frappe.registerModels(coreModels);
 frappe.registerModels(models);
-const server = 'localhost:8000';
+
+frappe.config.port = Number(process.env.PORT) - 80;
+const server = 'localhost:' + frappe.config.port;
+
 frappe.fetch = window.fetch.bind();
+frappe.fetch = window.fetch.bind();
+frappe.webRTC = new WebRTC(io.connect('http://localhost:8002'));
 frappe.db = new HTTPClient({ server });
 const socket = io.connect(`http://${server}`);
 frappe.db.bindSocketClient(socket);

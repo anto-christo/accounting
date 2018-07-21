@@ -4,11 +4,11 @@ const frappe = require('frappejs');
 const naming = require('frappejs/model/naming');
 const registerReportMethods = require('../reports');
 
-module.exports = {
+master = {
     async start() {
         await server.start({
             backend: 'sqlite',
-            connectionParams: { port: 8001 , dbPath: 'test.db', enableCORS: true },
+            connectionParams: { port: 8000, dbPath: 'master.db', enableCORS: true },
             staticPath: path.resolve(__dirname, '../www'),
             models: require('../models')
         })
@@ -41,3 +41,5 @@ module.exports = {
         registerReportMethods();
     }
 }
+
+master.start()
