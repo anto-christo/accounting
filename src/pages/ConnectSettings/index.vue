@@ -41,6 +41,7 @@
 <script>
 import frappe from "frappejs";
 import WebRTC from "frappejs/webrtc/webrtc";
+import WebRTCClient from 'frappejs/backends/webrtcClient'; 
 export default {
     data(){
         return {
@@ -76,6 +77,7 @@ export default {
                 this.badgeColor = 'btn-success';
                 this.badgeText = 'Connected';
                 this.connectedMaster = true;
+                frappe.db = new WebRTCClient();
             }
         }
     },
