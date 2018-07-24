@@ -41,7 +41,7 @@
 <script>
 import frappe from "frappejs";
 import WebRTC from "frappejs/webrtc/webrtc";
-import WebRTCClient from 'frappejs/backends/webrtcClient'; 
+import WebRTCClient from 'frappejs/backends/webrtc'; 
 export default {
     data(){
         return {
