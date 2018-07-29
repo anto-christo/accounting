@@ -9,12 +9,14 @@
 
 <script>
 import frappe from 'frappejs';
+import io from 'socket.io-client';
 import common from 'frappejs/common';
 import coreModels from 'frappejs/models';
 import models from '../models';
 import SQLite from 'frappejs/backends/sqlite';
 import postStart from '../server/postStart';
 import { getSettings, saveSettings } from '../electron/settings';
+import WebRTC from 'frappejs/webrtc/webrtc';
 
 import Observable from 'frappejs/utils/observable';
 import Desk from 'frappejs/ui/components/Desk';
@@ -31,6 +33,7 @@ frappe.registerModels(coreModels);
 frappe.registerModels(models);
 frappe.fetch = window.fetch.bind();
 frappe.isServer = true;
+frappe.webRTC = new WebRTC(io.connect('http://localhost:8002'));
 
 export default {
   name: 'App',

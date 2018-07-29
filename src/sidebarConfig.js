@@ -72,6 +72,17 @@ export default {
           label: _('General Ledger'), route: '#/report/general-ledger'
         }
       ]
+    },
+    {
+      title: _('Settings'),
+      items: [
+        {
+          label: _('Server Settings'), route: '#/server-settings'
+        },
+        {
+          label: _('Peer Connection'), route: '#/connect-settings'
+        }
+      ]
     }
   ]
 };
