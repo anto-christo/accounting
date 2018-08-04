@@ -58,6 +58,7 @@ export default {
       await frappe.login('Administrator');
       await this.initializeDb(userSettings.lastDbPath);
       await this.loginToDesk();
+      await this.checkServer();
     }
   },
   methods: {
@@ -75,6 +76,15 @@ export default {
       this.$router.push('/list/ToDo');
       this.showSetupWizard = false;
       this.showDesk = true;
+    },
+
+    async checkServer() {
+      frappe.getSingle('ServerSettings').then(serverSettings => {
+        console.log(serverSettings.serverName);
+        if(serverSettings.serverName!=null && localStorage.serverStatus == 'on'){
+          frappe.webRTC.startServer(serverSettings.serverName);
+        }
+      });
     },
 
     async saveAccountingSettings(values) {

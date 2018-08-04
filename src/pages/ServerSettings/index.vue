@@ -39,9 +39,9 @@ export default {
     data(){
         return {
             addDisable: true,
-            btnText: "Start",
-            badgeColor: "badge-danger",
-            badgeText: "Stopped",
+            btnText: localStorage.serverStatus == 'off'? "Start": "Stop",
+            badgeColor: localStorage.serverStatus == 'off'? "badge-danger": "badge-success",
+            badgeText: localStorage.serverStatus == 'off'? "Stopped": "Running",
             webRTC: frappe.webRTC,
             serverName: null
         };
@@ -68,7 +68,7 @@ export default {
 
     methods: {
         toggleServer: function(){
-            if(this.btnText == 'Start'){
+            if(localStorage.serverStatus == 'off'){
                 this.webRTC.startServer(this.serverName);
             }
             else{
