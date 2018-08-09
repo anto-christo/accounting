@@ -7,7 +7,7 @@
                         <h5 class="m-0">Server</h5>
                         <button type="button" :class="['btn','btn-sm','btn-primary']" v-text="btnText" @click="toggleServer()"></button>
                     </div>
-                    <div class="p-3">
+                    <div class="p-4">
                         <form class="frappe-form-layout">
                             <div>
                                 <div data-fieldname="serverName" class="form-group">
@@ -16,14 +16,7 @@
                                 </div>
                             </div>
                         </form>
-                        <table class="table table-borderless">
-                            <tbody>
-                                <tr>
-                                    <td>Status</td>
-                                    <td><span :class="['badge','float-right',badgeColor]" v-text="badgeText"></span></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <center><span :class="['badge',badgeColor]" v-text="badgeText"></span></center>
                     </div>
                 </div>
             </div>
@@ -34,14 +27,15 @@
 import frappe from "frappejs";
 import App from '../../App.vue';
 import WebRTC from 'frappejs/webrtc/webrtc';
+import ModalMessage from '../../components/ModalMessage';
 
 export default {
     data(){
         return {
             addDisable: true,
-            btnText: "Start",
-            badgeColor: "badge-danger",
-            badgeText: "Stopped",
+            btnText: localStorage.serverStatus == 'off'? "Start": "Stop" || "Start",
+            badgeColor: localStorage.serverStatus == 'off'? "badge-danger": "badge-success" || "badge-danger",
+            badgeText: localStorage.serverStatus == 'off'? "Stopped": "Running" || "Stopped",
             webRTC: frappe.webRTC,
             serverName: null
         };
@@ -52,7 +46,7 @@ export default {
 
         this.webRTC.onServerResponse = status => {
             console.log("Server Response:",status);
-            if(status){
+            if(status == true){
                 this.addDisable = true;
                 this.btnText = "Stop";
                 this.badgeColor = "badge-success";
@@ -62,13 +56,16 @@ export default {
                 this.btnText = "Start";
                 this.badgeColor = "badge-danger";
                 this.badgeText = "Stopped"
+                if(status == 'exists'){
+                    this.showError('This server name already exists');
+                }
             }
         }
     },
 
     methods: {
         toggleServer: function(){
-            if(this.btnText == 'Start'){
+            if(localStorage.serverStatus == 'off' || localStorage.serverStatus == undefined){
                 this.webRTC.startServer(this.serverName);
             }
             else{
@@ -85,6 +82,18 @@ export default {
                     this.addDisable = false;
                 }
             })
+        },
+
+        showError: function(message){
+            this.$modal.show({
+                modalProps: {
+                    title: 'Error',
+                },
+                component: ModalMessage,
+                props: {
+                    modalMessage: message
+                }
+            });
         }
     }
 }

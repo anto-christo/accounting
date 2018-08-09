@@ -42,6 +42,9 @@ export default {
         },
         {
           label: _('Event'), route: '#/list/Event'
+        },
+        {
+          label: _('User'), route: '#/list/User'
         }
       ]
     },

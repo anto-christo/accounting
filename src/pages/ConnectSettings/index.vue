@@ -7,7 +7,7 @@
                         <h5 class="m-0">Connect</h5>
                         <button type="button" :class="['btn','btn-sm','btn-primary']" v-text="btnText" @click="toggleConnect()">Connect</button>
                     </div>
-                    <div class="p-3">
+                    <div class="p-4">
                         <form class="frappe-form-layout">
                             <div>
                                 <div data-fieldname="masterName" class="form-group">
@@ -24,14 +24,7 @@
                                 </div>
                             </div>
                         </form>
-                        <table class="table table-borderless">
-                            <tbody>
-                                <tr>
-                                    <td>Status</td>
-                                    <td><span :class="['badge','float-right',badgeColor]" v-text="badgeText"></span></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <center><span :class="['badge',badgeColor]" v-text="badgeText"></span></center>
                     </div>
                 </div>
             </div>
@@ -42,6 +35,8 @@
 import frappe from "frappejs";
 import WebRTC from "frappejs/webrtc/webrtc";
 import WebRTCClient from 'frappejs/backends/webrtc'; 
+import ModalMessage from '../../components/ModalMessage';
+
 export default {
     data(){
         return {
@@ -59,7 +54,7 @@ export default {
     async created(){
         this.webRTC.onConnectionResponse = status => {
             console.log("Connection Response", status);
-            if(status && this.masterName){
+            if(status == true && this.masterName){
                 this.webRTC.requestAccess(this.email, this.password);
             }
             else{
@@ -67,17 +62,25 @@ export default {
                 this.badgeColor = 'btn-danger';
                 this.badgeText = 'Disconnected';
                 this.connectedMaster = false;
+                if(status == 'fail'){
+                    this.showError('The server is not live or does not exist');
+                }
             }
         }
 
         this.webRTC.onAccessResponse = status => {
             console.log("Access Response", status);
-            if(status){
+            if(status == true){
                 this.btnText = 'Disconnect';
                 this.badgeColor = 'btn-success';
                 this.badgeText = 'Connected';
                 this.connectedMaster = true;
                 frappe.db = new WebRTCClient();
+            }
+            else{
+                if(status == 'fail'){
+                    this.showError('You are not authorized to connect with this server');
+                }
             }
         }
     },
@@ -91,6 +94,18 @@ export default {
                 this.webRTC.stopConnection();
             }
         },
+
+        showError: function(message){
+            this.$modal.show({
+                modalProps: {
+                    title: 'Error',
+                },
+                component: ModalMessage,
+                props: {
+                    modalMessage: message
+                }
+            });
+        }
     }
 }
 </script>
