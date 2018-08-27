@@ -15,6 +15,39 @@ export default {
     },
 
     {
+      fieldname: 'storageType',
+      label: 'Storage Type',
+      fieldtype: 'Select',
+      options: [
+        'Local',
+        'Server'
+      ],
+      default: 'Local',
+      required: 1
+    },
+
+    {
+      fieldname: 'masterName',
+      label: 'Server Name',
+      fieldtype: 'Data',
+      required: 1
+    },
+
+    {
+      fieldname: 'verifyEmail',
+      label: 'Email',
+      fieldtype: 'Data',
+      required: 1
+    },
+
+    {
+      fieldname: 'verifyPassword',
+      label: 'Password',
+      fieldtype: 'Password',
+      required: 1
+    },
+
+    {
       fieldname: 'country',
       label: 'Country',
       fieldtype: 'Autocomplete',
@@ -48,7 +81,7 @@ export default {
       label: 'Fiscal Year End Date',
       fieldtype: 'Date',
       required: 1
-    }
+    },
   ],
 
   layout: {
@@ -58,6 +91,20 @@ export default {
         title: 'Select File location',
         columns: [
           { fields: ['file'] }
+        ]
+      },
+
+      {
+        title: 'Choose storage option',
+        columns: [
+          { fields: ['storageType'] }
+        ]
+      },
+
+      {
+        title: 'Connect to Server',
+        columns: [
+          { fields: ['masterName', 'verifyEmail', 'verifyPassword'] }
         ]
       },
 
@@ -73,7 +120,7 @@ export default {
         columns: [
           { fields: ['companyName', 'bankName', 'fiscalYearStart', 'fiscalYearEnd'] }
         ]
-      }
+      },
     ]
   }
 }

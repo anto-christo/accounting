@@ -27,8 +27,6 @@
 import frappe from "frappejs";
 import App from '../../App.vue';
 import WebRTC from 'frappejs/webrtc/webrtc';
-import ModalMessage from '../../components/ModalMessage';
-
 export default {
     data(){
         return {
@@ -57,10 +55,11 @@ export default {
                 this.badgeColor = "badge-danger";
                 this.badgeText = "Stopped"
                 if(status == 'exists'){
-                    this.showError('This server name already exists');
+                    //this.showError('This server name already exists');
                 }
             }
         }
+        frappe.throw('ValueError', 'The server name already exists', new Error().stack);
     },
 
     methods: {
@@ -81,20 +80,8 @@ export default {
                 else{
                     this.addDisable = false;
                 }
-            })
-        },
-
-        showError: function(message){
-            this.$modal.show({
-                modalProps: {
-                    title: 'Error',
-                },
-                component: ModalMessage,
-                props: {
-                    modalMessage: message
-                }
             });
-        }
+        },
     }
 }
 </script>

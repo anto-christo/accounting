@@ -33,7 +33,9 @@ frappe.registerModels(coreModels);
 frappe.registerModels(models);
 frappe.fetch = window.fetch.bind();
 frappe.isServer = true;
-frappe.webRTC = new WebRTC(io.connect('http://localhost:8002'));
+frappe.events = new Observable();
+frappe.throw = frappe.errors.throw;
+frappe.webRTC = new WebRTC(io.connect('http://159.65.158.36:8002'));
 
 export default {
   name: 'App',
@@ -58,7 +60,6 @@ export default {
       await frappe.login('Administrator');
       await this.initializeDb(userSettings.lastDbPath);
       await this.loginToDesk();
-      await this.checkServer();
     }
   },
   methods: {
@@ -76,15 +77,6 @@ export default {
       this.$router.push('/list/ToDo');
       this.showSetupWizard = false;
       this.showDesk = true;
-    },
-
-    async checkServer() {
-      frappe.getSingle('ServerSettings').then(serverSettings => {
-        console.log(serverSettings.serverName);
-        if(serverSettings.serverName!=null && localStorage.serverStatus == 'on'){
-          frappe.webRTC.startServer(serverSettings.serverName);
-        }
-      });
     },
 
     async saveAccountingSettings(values) {
@@ -135,7 +127,7 @@ export default {
       frappe.db = new SQLite({ dbPath });
       await frappe.db.connect();
       await frappe.db.migrate();
-    }
+    },
   }
 }
 </script>

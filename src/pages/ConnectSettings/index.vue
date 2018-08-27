@@ -35,9 +35,8 @@
 import frappe from "frappejs";
 import WebRTC from "frappejs/webrtc/webrtc";
 import WebRTCClient from 'frappejs/backends/webrtc'; 
-import ModalMessage from '../../components/ModalMessage';
-
 export default {
+    name: 'ConnectSettings',
     data(){
         return {
             btnText: "Connect",
@@ -63,7 +62,7 @@ export default {
                 this.badgeText = 'Disconnected';
                 this.connectedMaster = false;
                 if(status == 'fail'){
-                    this.showError('The server is not live or does not exist');
+                    //this.showError('The server is not live or does not exist');
                 }
             }
         }
@@ -79,7 +78,7 @@ export default {
             }
             else{
                 if(status == 'fail'){
-                    this.showError('You are not authorized to connect with this server');
+                    //this.showError('You are not authorized to connect with this server');
                 }
             }
         }
@@ -94,18 +93,6 @@ export default {
                 this.webRTC.stopConnection();
             }
         },
-
-        showError: function(message){
-            this.$modal.show({
-                modalProps: {
-                    title: 'Error',
-                },
-                component: ModalMessage,
-                props: {
-                    modalMessage: message
-                }
-            });
-        }
     }
 }
 </script>

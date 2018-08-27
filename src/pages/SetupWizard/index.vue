@@ -67,10 +67,26 @@ export default {
       this.$emit('complete', this.doc);
     },
     nextSection() {
-      this.currentSection += 1;
+      if(this.currentSection == 1) {
+        if(this.doc.storageType == 'Local') {
+          this.currentSection += 2;
+        } else {
+          this.currentSection += 1;
+        }
+      } else {
+        this.currentSection += 1;
+      }
     },
     prevSection() {
-      this.currentSection -= 1;
+      if(this.doc.storageType == 'Local') {
+        if(this.currentSection == 3) {
+          this.currentSection -= 2;
+        } else {
+          this.currentSection -= 1;
+        }
+      } else {
+        this.currentSection -= 1;
+      }
     },
     indicatorColor(i) {
       return i === this.currentSection
