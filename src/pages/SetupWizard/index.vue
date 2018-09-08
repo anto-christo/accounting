@@ -46,7 +46,6 @@ import Observable from 'frappejs/utils/observable';
 import FormLayout from 'frappejs/ui/components/Form/FormLayout';
 import indicatorColor from 'frappejs/ui/constants/indicators';
 import setupConfig from './config';
-
 export default {
   name: 'SetupWizard',
   data() {
@@ -67,32 +66,27 @@ export default {
       this.$emit('complete', this.doc);
     },
     nextSection() {
-      if(this.currentSection == 1) {
-        if(this.doc.storageType == 'Local') {
-          this.currentSection += 2;
-        } else {
-          this.currentSection += 1;
-        }
-      } else {
-        this.currentSection += 1;
-      }
+      this.showFields();
+      this.currentSection += 1;
     },
     prevSection() {
-      if(this.doc.storageType == 'Local') {
-        if(this.currentSection == 3) {
-          this.currentSection -= 2;
-        } else {
-          this.currentSection -= 1;
-        }
-      } else {
-        this.currentSection -= 1;
-      }
+      this.showFields();
+      this.currentSection -= 1;
     },
     indicatorColor(i) {
       return i === this.currentSection
         ? indicatorColor.BLUE
         : indicatorColor.GREY;
-    }
+    },
+    showFields() {
+      if(this.doc.storageOption == 'Create new storage') {
+        setupConfig.showNewSetup();
+      } else if(this.doc.storageOption == 'Open existing storage') {
+        setupConfig.showExistingSetup();
+      } else {
+        setupConfig.showServerSetup();
+      }
+    },
   },
   computed: {
     fields() {
@@ -110,7 +104,6 @@ export default {
   animation: rotation 1s infinite linear;
   transform-origin: 50% 50%;
 }
-
 @keyframes rotation {
   from {
     transform: rotate(0deg);

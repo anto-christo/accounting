@@ -59,7 +59,7 @@ export default {
                 }
             }
         }
-        frappe.throw('ValueError', 'The server name already exists', new Error().stack);
+        frappe.throw('The server does not exist or is not live', 'NotFound');
     },
 
     methods: {
