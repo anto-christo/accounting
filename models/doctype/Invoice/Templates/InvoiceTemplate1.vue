@@ -1,13 +1,18 @@
 <template>
     <div :style="$.font" style="font-family: sans-serif;">
         <div class="row no-gutters pl-5 pr-5 mt-5">
-            <div :style="$.regularFontSize" class="col-6">
-                <company-address />                       
+            <div class="col-6">
+                <company-logo />                       
             </div>
             <div :style="$.regularFontSize" class="col-6 text-right">
                 <h2 :style="$.headerFontColor">INVOICE</h2>
                 <p :style="$.paraStyle"><strong>{{ doc.name }}</strong></p>
                 <p :style="$.paraStyle">{{ frappe.format(doc.date, 'Date') }}</p>
+            </div>
+        </div>
+        <div class="row no-gutters pl-5 pr-5 mt-5">
+            <div :style="$.regularFontSize" class="col-6">
+                <company-address />                       
             </div>
         </div>
         <div class="row pl-5 mt-5">
@@ -70,18 +75,20 @@
 </template>
 <script>
 import Styles from './InvoiceStyles';
+import CompanyLogo from './CompanyLogo';
 import CompanyAddress from './CompanyAddress';
 import CustomerAddress from './CustomerAddress';
 export default {
     name: 'InvoiceTemplate1',
     components: {
         CompanyAddress,
-        CustomerAddress
+        CustomerAddress,
+        CompanyLogo
     },
     props: ['doc', 'themeColor', 'font'],
     data() {
         return {
-            $: Styles
+            $: Styles,
         }
     },
     watch: {

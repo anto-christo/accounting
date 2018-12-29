@@ -9,11 +9,16 @@
         </div>
         <div class="row no-gutters mt-5">
             <div class="col-6 text-left pl-5">
-                <company-address />
+                <company-logo />
             </div>
             <div class="col-6 pr-5 text-right">
                 <p :style="[$.bold, $.paraStyle, $.mediumFontSize]">{{ doc.name }}</p>
                 <p :style="$.paraStyle">{{ frappe.format(doc.date, 'Date') }}</p>
+            </div>
+        </div>
+        <div class="row no-gutters mt-5">
+            <div class="col-6 text-left pl-5">
+                <company-address />
             </div>
         </div>
         <div class="row no-gutters mt-5">
@@ -76,6 +81,7 @@
 </template>
 <script>
 import Styles from './InvoiceStyles';
+import CompanyLogo from './CompanyLogo';
 import CompanyAddress from './CompanyAddress';
 import CustomerAddress from './CustomerAddress';
 export default {
@@ -83,7 +89,8 @@ export default {
     props: ['doc', 'themeColor', 'font'],
     components: {
         CompanyAddress,
-        CustomerAddress
+        CustomerAddress,
+        CompanyLogo
     },
     data() {
         return {

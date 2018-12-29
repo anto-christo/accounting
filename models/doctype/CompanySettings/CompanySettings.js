@@ -22,6 +22,17 @@ module.exports = {
             "disabled": false,
             "required": true,
             "target": "Address"
+        },
+        {
+            "fieldname": "logo",
+            "label": "Logo",
+            "hidden": 1,
+            "fieldtype": "Data"
+        },
+        {
+            "fieldname": "companyLogo",
+            "label": "Company Logo",
+            "fieldtype": "File"
         }
     ]
 }

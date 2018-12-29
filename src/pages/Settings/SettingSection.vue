@@ -10,7 +10,7 @@
 </template>
 <script>
 import FormLayout from 'frappejs/ui/components/Form/FormLayout';
-
+import { exec } from 'child_process';
 export default {
   name: 'SettingSection',
   props: ['doctype'],
@@ -31,9 +31,24 @@ export default {
     this.title = meta.label;
   },
   methods: {
-    saveDoc() {
+    async saveDoc(updated) {
+      const { fieldname, value } = updated;
+      if (value instanceof FileList) {
+        const base64  = await this.encodeImageFileAsURL(value);
+        this.doc['logo'] = base64;
+      } 
       this.doc.update();
       this.$toasted.show('Saved');
+    },
+    async encodeImageFileAsURL(element) {
+      var file = element[0];
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      return new Promise((resolve, reject) => {
+        reader.onloadend = function() {
+          resolve(reader.result);
+        }
+      });
     }
   }
 }
