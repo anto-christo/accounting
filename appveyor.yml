@@ -4,7 +4,7 @@ branches:
   only:
     - build-test
 
-image: Ubuntu 18.04 LTS (Bionic Beaver)	
+image: Ubuntu1804	
 
 environment:
   nodejs_version: "8.12.0"
