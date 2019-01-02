@@ -1,6 +1,7 @@
 {
   "name": "frappe-accounting",
   "description": "Simple Accounting app for everyone",
+  "homepage": "https://frappe.io/accounting",
   "productName": "Frappe-Accounting",
   "version": "0.0.2",
   "author": {
