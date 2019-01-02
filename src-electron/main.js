@@ -4,17 +4,17 @@ const setupMenu = require('./menu');
 let mainWindow
 let winURL
 
-if (process.env.NODE_ENV !== 'development') {
+// if (process.env.NODE_ENV !== 'development') {
   global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
-}
+// }
 
-if (process.env.NODE_ENV === 'development') {
-  const { getAppConfig } = require('frappejs/webpack/utils');
-  const appConfig = getAppConfig();
-  winURL = `http://localhost:${appConfig.dev.devServerPort}`;
-} else {
+// if (process.env.NODE_ENV === 'development') {
+//   const { getAppConfig } = require('frappejs/webpack/utils');
+//   const appConfig = getAppConfig();
+//   winURL = `http://localhost:${appConfig.dev.devServerPort}`;
+// } else {
   winURL = `file://${__dirname}/index.html`;
-}
+// }
 
 function createWindow() {
   /**
@@ -28,6 +28,8 @@ function createWindow() {
       webSecurity: false
     }
   })
+
+  mainWindow.webContents.openDevTools()
 
   mainWindow.loadURL(winURL)
 

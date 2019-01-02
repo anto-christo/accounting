@@ -1,0 +1,18 @@
+version: 1.0.{build}
+
+branches:
+  only:
+    - accounting-redesign
+
+image: Ubuntu 18.04 LTS (Bionic Beaver)	
+
+environment:
+  nodejs_version: "8.12.0"
+
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - yarn add -g electron-builder
+  - yarn
+
+build_script:
+  - yarn dist
