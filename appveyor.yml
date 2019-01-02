@@ -6,7 +6,11 @@ branches:
 
 image: Ubuntu1804	
 
+environment:
+  nodejs_version: "8"
+
 install:
+  - ps: Install-Product node $env:nodejs_version
   - yarn
   - yarn add -g electron-builder
 
