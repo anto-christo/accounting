@@ -15,20 +15,18 @@ build_script:
   - ps: frappe build electron
   - yarn dist
 
-after_build:
-  - ps: cd build && ls
-# artifacts:
-#   - path: build/frappe-accounting_0.0.2_amd64.deb
-#     name: FrappeAccountingDeb
+artifacts:
+  - path: build
+    name: FrappeAccountingDeb
 
-# deploy:
-#   release: frappe-accounting-v$(APPVEYOR_BUILD_VERSION)
-#   description: 'Ubuntu release'
-#   provider: GitHub
-#   auth_token:
-#     secure: rxXh3UopYhGDH+mUpdBF/6K3AaYg0R5SGAt3fApi2rW7p1M6mf7lbL7PzyMajQ4o
-#   artifact: build/frappe-accounting_0.0.2_amd64.deb
-#   draft: false
-#   prerelease: true
-#   on:
-#     branch: build-test
+deploy:
+  release: frappe-accounting-v$(APPVEYOR_BUILD_VERSION)
+  description: 'Windows release'
+  provider: GitHub
+  auth_token:
+    secure: rxXh3UopYhGDH+mUpdBF/6K3AaYg0R5SGAt3fApi2rW7p1M6mf7lbL7PzyMajQ4o
+  artifact: build
+  draft: false
+  prerelease: true
+  on:
+    branch: build-test
