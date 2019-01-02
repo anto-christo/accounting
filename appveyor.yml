@@ -15,7 +15,7 @@ build_script:
   - ps: frappe build electron
   - yarn dist
 
-after build:
+after_build:
   - ps: cd build && ls
 # artifacts:
 #   - path: build/frappe-accounting_0.0.2_amd64.deb
