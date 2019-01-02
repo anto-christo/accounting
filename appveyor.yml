@@ -6,11 +6,8 @@ branches:
 
 image: Ubuntu1804	
 
-environment:
-  nodejs_version: "8.12.0"
-
 install:
-  - sh: nvm install $env:nodejs_version
+  - sh: nvm install 8.12.0
   - yarn
   - yarn add -g electron-builder
 
