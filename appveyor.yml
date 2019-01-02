@@ -15,5 +15,18 @@ build_script:
   - sh: frappe build electron
   - yarn dist
 
-after_build:
-  - sh: cd build && ls
+artifacts:
+  - path: build/frappe-accounting_0.0.2_amd64.deb
+    name: FrappeAccountingDeb
+
+deploy:
+  release: myproduct-v$(appveyor_build_version)
+  description: 'Ubuntu release'
+  provider: GitHub
+  auth_token:
+    secure: rxXh3UopYhGDH+mUpdBF/6K3AaYg0R5SGAt3fApi2rW7p1M6mf7lbL7PzyMajQ4o
+  artifact: build/frappe-accounting_0.0.2_amd64.deb
+  draft: false
+  prerelease: true
+  on:
+    branch: build-test
