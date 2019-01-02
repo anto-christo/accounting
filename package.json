@@ -29,8 +29,7 @@
     "test": "mocha tests",
     "start": "frappe start",
     "electron": "cross-env ELECTRON=true frappe start electron",
-    "pack": "cross-env NODE_ENV=production ELECTRON=true frappe build electron",
-    "dist": "yarn pack && electron-builder",
+    "dist": "electron-builder",
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
