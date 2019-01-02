@@ -14,3 +14,6 @@ install:
 build_script:
   - sh: frappe build electron
   - yarn dist
+
+after_build:
+  - sh: cd build && ls
