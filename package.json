@@ -14,8 +14,8 @@
     ],
     "productName": "Frappe-Accounting",
     "appId": "io.frappe.accounting",
-    "linux": {
-      "target": "deb"
+    "win": {
+      "target": "nsis"
     },
     "directories": {
       "output": "build"

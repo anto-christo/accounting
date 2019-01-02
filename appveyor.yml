@@ -4,29 +4,31 @@ branches:
   only:
     - build-test
 
-image: Ubuntu1804	
+image: Visual Studio 2017
 
 install:
-  - sh: nvm install 8.12.0
-  - sh: npm i -g https://github.com/anto-christo/frappejs-cli#production-build
+  - ps: Install-Product node 8.12.0
+  - npm i -g https://github.com/anto-christo/frappejs-cli#production-build
   - yarn
 
 build_script:
-  - sh: frappe build electron
+  - ps: frappe build electron
   - yarn dist
 
-artifacts:
-  - path: build/frappe-accounting_0.0.2_amd64.deb
-    name: FrappeAccountingDeb
+after build:
+  - ps: cd build && ls
+# artifacts:
+#   - path: build/frappe-accounting_0.0.2_amd64.deb
+#     name: FrappeAccountingDeb
 
-deploy:
-  release: myproduct-v$(appveyor_build_version)
-  description: 'Ubuntu release'
-  provider: GitHub
-  auth_token:
-    secure: rxXh3UopYhGDH+mUpdBF/6K3AaYg0R5SGAt3fApi2rW7p1M6mf7lbL7PzyMajQ4o
-  artifact: build/frappe-accounting_0.0.2_amd64.deb
-  draft: false
-  prerelease: true
-  on:
-    branch: build-test
+# deploy:
+#   release: frappe-accounting-v$(APPVEYOR_BUILD_VERSION)
+#   description: 'Ubuntu release'
+#   provider: GitHub
+#   auth_token:
+#     secure: rxXh3UopYhGDH+mUpdBF/6K3AaYg0R5SGAt3fApi2rW7p1M6mf7lbL7PzyMajQ4o
+#   artifact: build/frappe-accounting_0.0.2_amd64.deb
+#   draft: false
+#   prerelease: true
+#   on:
+#     branch: build-test
