@@ -13,6 +13,7 @@ install:
 
 build_script:
   - ps: frappe build electron
+  - ps: npm i -g --production windows-build-tools
   - yarn dist
 
 artifacts:
