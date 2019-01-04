@@ -1,0 +1,17 @@
+branches:
+  only:
+  - build-test
+
+os: osx
+
+language: node_js
+node_js:
+  - "8.12.0"
+
+install:
+  - yarn add -g https://github.com/anto-christo/frappejs-cli#production-build
+  - yarn
+
+script:
+  - frappe build electron
+  - yarn dist
