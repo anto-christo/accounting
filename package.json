@@ -14,8 +14,8 @@
     ],
     "productName": "Frappe-Accounting",
     "appId": "io.frappe.accounting",
-    "win": {
-      "target": "nsis"
+    "mac": {
+      "target": "dmg"
     },
     "directories": {
       "output": "build"
