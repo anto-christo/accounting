@@ -15,3 +15,10 @@ install:
 script:
   - frappe build electron
   - yarn dist
+
+deploy:
+  provider: releases
+  api_key: 5f8cc2370f9c54da2a85c02639e674dc196d263f
+  file: build/Frappe-Accounting-0.0.2.dmg
+  skip_cleanup: true
+  draft: true
