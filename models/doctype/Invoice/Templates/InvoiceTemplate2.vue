@@ -1,5 +1,5 @@
 <template>
-    <div :style="[$.regularFontSize, $.font]" style="font-family: sans-serif;">
+    <div :style="[$.regularFontSize, $.font]" style="position: relative; height: 29.7cm">
         <div class="row no-gutters p-5" :style="$.headerColor">
             <div class="col-8 text-left">
                 <h1>INVOICE</h1>
@@ -63,7 +63,7 @@
                 </table>
             </div>
         </div>
-        <div class="row pl-5 pr-5 mt-5">
+        <div class="row pl-5 pr-5 mt-5" style="position: absolute; bottom: 0; right:0; left:0">
             <div class="col-12">
                 <table class="table">
                     <tbody>

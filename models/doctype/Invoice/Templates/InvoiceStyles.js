@@ -29,8 +29,8 @@ module.exports = {
         borderRight: '1px solid #e0e0d1'
     },
     tablePadding: {
-        paddingTop: '3%',
-        paddingBottom: '3%'
+        paddingTop: '1.5%',
+        paddingBottom: '1.5%'
     },
     fontColor: {
         color: null

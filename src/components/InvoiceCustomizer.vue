@@ -2,8 +2,8 @@
   <div>
 	<div v-if="doc" class="p-4">
 		<div class="row">
-			<div class="col-6 text-center">
-				<h4>Customizer</h4>
+			<div class="col-6 text-left">
+				<h4>Settings</h4>
 			</div>
 			<div class="col-6 text-right">
 				<f-button secondary @click="$emit('closeInvoiceCustomizer')">{{ _('Close') }}</f-button>

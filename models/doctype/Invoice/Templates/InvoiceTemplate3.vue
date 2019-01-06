@@ -1,5 +1,5 @@
 <template>
-    <div :style="[$.regularFontSize, $.font]" style="font-family: sans-serif;">
+    <div :style="[$.regularFontSize, $.font]" style="position: relative; height: 29.7cm">
         <div class="row no-gutters mt-5">
             <div class="col-6" :style="$.bgColor"></div>
             <div class="col-4 text-center" style="vertical-align: middle">
@@ -45,7 +45,7 @@
                             <td :style="$.tablePadding">{{ row.quantity }}</td>
                             <td :style="$.tablePadding" class="text-right pr-5">{{ frappe.format(row.amount, 'Currency') }}</td>
                         </tr>
-                        <tr><td colspan="5" style="padding: 4%"></td></tr>
+                        <tr><td colspan="5" style="padding: 2%"></td></tr>
                         <tr>
                             <td colspan="2" :style="[$.hideBorderTop, $.tablePadding]"></td>
                             <td :style="$.tablePadding" colspan="2">SUBTOTAL</td>
@@ -65,7 +65,7 @@
                 </table>
             </div>
         </div>
-        <div class="row mt-5">
+        <div class="row mt-5" style="position: absolute; bottom: 0; right:0; left:0">
             <div :style="$.regularFontSize" class="col-12">
                 <table class="table">
                     <tbody>

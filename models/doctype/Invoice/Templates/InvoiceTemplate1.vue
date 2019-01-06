@@ -1,8 +1,8 @@
 <template>
-    <div :style="$.font" style="font-family: sans-serif;">
+    <div :style="$.font" style="position: relative; height: 29.7cm">
         <div class="row no-gutters pl-5 pr-5 mt-5">
             <div class="col-6">
-                <company-logo />                       
+                <company-logo />                                                                     
             </div>
             <div :style="$.regularFontSize" class="col-6 text-right">
                 <h2 :style="$.headerFontColor">INVOICE</h2>
@@ -61,7 +61,7 @@
                 </table>
             </div>
         </div>
-        <div class="row pl-5 pr-5 mt-5">
+        <div class="row pl-5 pr-5 mt-5" style="position: absolute; bottom: 0; right:0; left:0">
             <div :style="$.regularFontSize" class="col-12">
                 <table class="table">
                     <tbody>
