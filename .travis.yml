@@ -2,7 +2,7 @@ branches:
   only:
   - build-test
 
-os: osx
+dist: xenial
 
 language: node_js
 node_js:
