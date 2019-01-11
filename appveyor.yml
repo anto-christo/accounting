@@ -2,7 +2,7 @@ version: 1.0.{build}
 
 branches:
   only:
-    - build-test
+    - linux-build-test
 
 image: Ubuntu1804	
 
@@ -29,4 +29,4 @@ deploy:
   draft: false
   prerelease: true
   on:
-    branch: build-test
+    branch: linux-build-test
