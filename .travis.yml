@@ -1,6 +1,6 @@
 branches:
   only:
-  - build-test
+  - mac-build-test
 os: osx
 language: node_js
 node_js:
@@ -19,4 +19,4 @@ deploy:
   skip_cleanup: true
   draft: true
   on:
-    branch: build-test
+    branch: mac-build-test
