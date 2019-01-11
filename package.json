@@ -14,8 +14,8 @@
     ],
     "productName": "Frappe-Accounting",
     "appId": "io.frappe.accounting",
-    "mac": {
-      "target": "dmg"
+    "linux": {
+      "target": "deb"
     },
     "directories": {
       "output": "build"

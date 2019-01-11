@@ -1,0 +1,32 @@
+version: 1.0.{build}
+
+branches:
+  only:
+    - build-test
+
+image: Ubuntu1804	
+
+install:
+  - sh: nvm install 8.12.0
+  - sh: npm i -g https://github.com/anto-christo/frappejs-cli#production-build
+  - yarn
+
+build_script:
+  - sh: frappe build electron
+  - yarn dist
+
+artifacts:
+  - path: build/frappe-accounting_0.0.2_amd64.deb
+    name: FrappeAccountingDeb
+
+deploy:
+  release: frappe-accounting-v$(APPVEYOR_BUILD_VERSION)
+  description: 'Ubuntu release'
+  provider: GitHub
+  auth_token:
+    secure: rxXh3UopYhGDH+mUpdBF/6K3AaYg0R5SGAt3fApi2rW7p1M6mf7lbL7PzyMajQ4o
+  artifact: build/frappe-accounting_0.0.2_amd64.deb
+  draft: false
+  prerelease: true
+  on:
+    branch: build-test
