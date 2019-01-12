@@ -10,20 +10,17 @@
     </div>
     <div class="row no-gutters">
       <div v-if="showInvoiceCustomizer" class="col-3 mt-4 mx-auto">
-        <invoice-customizer
-          class="border"
-          style="position: fixed"
+        <print-format-customizer
+          class="position-fixed"
           @closeInvoiceCustomizer="toggleInvoiceCustomizer"
           @changeColor="changeColor($event)"
           @changeTemplate="changeTemplate($event)"
-          @changeFont="changeFont($event)"
         />
       </div>
-      <div ref="printComponent" class="col-8 bg-white mt-4 mx-auto border shadow">
+      <div ref="printComponent" class="col-8 bg-white mt-4 mb-5 mx-auto border shadow">
         <component
           :themeColor="themeColor"
           :template="template"
-          :font="font"
           :is="printComponent"
           v-if="doc"
           :doc="doc"
@@ -34,7 +31,7 @@
 </template>
 <script>
 import PageHeader from '@/components/PageHeader';
-import InvoiceCustomizer from '@/components/InvoiceCustomizer';
+import PrintFormatCustomizer from './PrintFormatCustomizer';
 import InvoicePrint from '@/../models/doctype/Invoice/InvoicePrint';
 const printComponents = {
   Invoice: InvoicePrint
@@ -44,15 +41,14 @@ export default {
   props: ['doctype', 'name'],
   components: {
     PageHeader,
-    InvoiceCustomizer
+    PrintFormatCustomizer
   },
   data() {
     return {
-      doc: undefined,
-      printComponent: undefined,
-      themeColor: undefined,
-      template: undefined,
-      font: undefined,
+      doc: null,
+      printComponent: null,
+      themeColor: null,
+      template: null,
       showInvoiceCustomizer: false
     };
   },
@@ -75,13 +71,11 @@ export default {
       this.showInvoiceCustomizer = !this.showInvoiceCustomizer;
     },
     changeColor(color) {
+      console.log('color')
       this.themeColor = color;
     },
     changeTemplate(template) {
       this.template = template;
-    },
-    changeFont(font) {
-      this.font = font;
     }
   }
 };

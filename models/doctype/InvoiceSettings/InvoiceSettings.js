@@ -23,19 +23,11 @@ module.exports = {
             default: "Basic I" 
         },
         {
-            fieldname: "font",
-            label: "Font",
-            fieldtype: "Select",
-            options: ["Montserrat", "Open Sans", "Oxygen", "Merriweather"],
-            required: 1,
-            default: "Montserrat" 
-        },
-        {
             fieldname: "themeColor",
             label: "Theme Color",
             fieldtype: "Data",
             required: 1,
-            default: "#000000",
+            default: "#007bff",
             hidden: 1
         }
     ]

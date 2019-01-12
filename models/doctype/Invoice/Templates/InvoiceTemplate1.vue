@@ -1,11 +1,11 @@
 <template>
-    <div :style="$.font" style="position: relative; height: 29.7cm">
+    <div style="height: 29.7cm">
         <div class="row no-gutters pl-5 pr-5 mt-5">
             <div class="col-6">
                 <company-logo />                                                                     
             </div>
             <div :style="$.regularFontSize" class="col-6 text-right">
-                <h2 :style="$.headerFontColor">INVOICE</h2>
+                <h2 :style="$.headerFontColor">Invoice</h2>
                 <p :style="$.paraStyle"><strong>{{ doc.name }}</strong></p>
                 <p :style="$.paraStyle">{{ frappe.format(doc.date, 'Date') }}</p>
             </div>
@@ -61,7 +61,7 @@
                 </table>
             </div>
         </div>
-        <div class="row pl-5 pr-5 mt-5" style="position: absolute; bottom: 0; right:0; left:0">
+        <div class="row pl-5 pr-5 mt-5">
             <div :style="$.regularFontSize" class="col-12">
                 <table class="table">
                     <tbody>
@@ -85,7 +85,7 @@ export default {
         CustomerAddress,
         CompanyLogo
     },
-    props: ['doc', 'themeColor', 'font'],
+    props: ['doc', 'themeColor'],
     data() {
         return {
             $: Styles,
@@ -93,9 +93,6 @@ export default {
     },
     watch: {
         themeColor: function() {
-            this.setTheme();
-        },
-        font: function() {
             this.setTheme();
         }
     },
@@ -108,7 +105,6 @@ export default {
             this.$.headerFontColor.color = this.themeColor;
             this.$.showBorderBottom.borderBottom = `0.22rem solid ${this.themeColor}`;
             this.$.showBorderTop.borderTop = `0.22rem solid ${this.themeColor}`;
-            this.$.font.fontFamily = this.font;
         }
     }
 }

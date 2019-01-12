@@ -2,14 +2,11 @@ module.exports = {
     bold: {
         fontWeight: 'bold'
     },
-    font: {
-        fontFamily: null
-    },
     regularFontSize: {
-        fontSize: '0.8rem'
+        fontSize: '1rem'
     },
     mediumFontSize: {
-        fontSize: '1rem'
+        fontSize: '1.2rem'
     },
     paraStyle: {
         margin: '0.5rem',

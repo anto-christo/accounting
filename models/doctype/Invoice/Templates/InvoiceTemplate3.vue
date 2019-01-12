@@ -1,5 +1,5 @@
 <template>
-    <div :style="[$.regularFontSize, $.font]" style="position: relative; height: 29.7cm">
+    <div :style="[$.regularFontSize]" style="height: 29.7cm">
         <div class="row no-gutters mt-5">
             <div class="col-6" :style="$.bgColor"></div>
             <div class="col-4 text-center" style="vertical-align: middle">
@@ -65,7 +65,7 @@
                 </table>
             </div>
         </div>
-        <div class="row mt-5" style="position: absolute; bottom: 0; right:0; left:0">
+        <div class="row mt-5">
             <div :style="$.regularFontSize" class="col-12">
                 <table class="table">
                     <tbody>
@@ -86,7 +86,7 @@ import CompanyAddress from './CompanyAddress';
 import CustomerAddress from './CustomerAddress';
 export default {
     name: 'InvoicePrint',
-    props: ['doc', 'themeColor', 'font'],
+    props: ['doc', 'themeColor'],
     components: {
         CompanyAddress,
         CustomerAddress,
@@ -100,9 +100,6 @@ export default {
     watch: {
         themeColor: function() {
             this.setTheme();
-        },
-        font: function() {
-            this.setTheme();
         }
     },
     async created() {
@@ -113,7 +110,6 @@ export default {
         setTheme() {
             this.$.bgColor.backgroundColor = this.themeColor;
             this.$.showBorderBottom.borderBottom = `0.22rem solid ${this.themeColor}`;
-            this.$.font.fontFamily = this.font;
         }
     }
 }

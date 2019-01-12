@@ -1,5 +1,5 @@
 <template>
-    <component :themeColor="color" :font="fontFamily" :is="invoiceTemplate" v-if="doc" :doc="doc"/>
+    <component :themeColor="color" :is="invoiceTemplate" v-if="doc" :doc="doc"/>
 </template>
 <script>
 import InvoiceTemplate1 from '@/../models/doctype/Invoice/Templates/InvoiceTemplate1';
@@ -14,19 +14,15 @@ const invoiceTemplates = {
 
 export default {
   name: 'InvoicePrint',
-  props: ['doc', 'themeColor', 'template', 'font'],
+  props: ['doc', 'themeColor', 'template'],
   data() {
     return {
-      color: undefined,
-      fontFamily: undefined,
-      invoiceTemplate: undefined
+      color: null,
+      invoiceTemplate: null
     };
   },
   watch: {
     themeColor: async function() {
-      await this.loadInvoice();
-    },
-    font: async function() {
       await this.loadInvoice();
     },
     template: async function() {
@@ -34,15 +30,17 @@ export default {
     }
   },
   async created() {
+    this.color = await this.getColor();
+    this.invoiceTemplate = await this.getTemplate();
     await this.loadInvoice();
   },
   methods: {
     async loadInvoice() {
-      this.color = this.themeColor !== undefined ? this.themeColor : await this.getColor();
-      this.fontFamily = this.font !== undefined ? this.font : await this.getFont();
-      let template = this.template !== undefined ? this.template : await this.getTemplate();
-      let templateFile = invoiceTemplates[template];
-      this.invoiceTemplate = templateFile;
+      if (this.themeColor) this.color = this.themeColor;
+      console.log(this.template);
+      if (this.template) this.invoiceTemplate = this.template;
+      console.log(this.invoiceTemplate);
+      this.invoiceTemplate = invoiceTemplates[this.invoiceTemplate];
     },
     async getTemplate() {
       let invoiceSettings = await frappe.getDoc('InvoiceSettings');
@@ -51,10 +49,6 @@ export default {
     async getColor() {
       let invoiceSettings = await frappe.getDoc('InvoiceSettings');
       return invoiceSettings.themeColor;
-    },
-    async getFont() {
-      let invoiceSettings = await frappe.getDoc('InvoiceSettings');
-      return invoiceSettings.font;
     }
   }
 };

@@ -1,6 +1,5 @@
 <template>
-  <div>
-	<div v-if="doc" class="p-4">
+	<div v-if="doc" class="p-4 border rounded">
 		<div class="row">
 			<div class="col-6 text-left">
 				<h4>Settings</h4>
@@ -16,11 +15,11 @@
 					:fields="fields"
 					@updateDoc="saveDoc"
 				/>
-				<sketch-picker v-model="color"/>	
+				<label for="template-0" class="text-muted">{{ _('Choose a primary') }}</label>
+				<sketch-picker v-model="color" />
 			</div>
 		</div>
 	</div>
-  </div>
 </template>
 <script>
 import FormLayout from 'frappejs/ui/components/Form/FormLayout';
@@ -47,12 +46,8 @@ export default {
 	},
   	methods: {
 		async saveDoc(updatedValue) {
-			let { fieldname, value } = updatedValue;
-			if (fieldname === 'template') {
-				this.$emit('changeTemplate', value);
-			} else if (fieldname === 'font') {
-				this.$emit('changeFont', value);
-			}
+			let { value } = updatedValue;
+			this.$emit('changeTemplate', value);
 			await this.doc.update();
     	}
   	},
@@ -69,3 +64,8 @@ export default {
   	}
 };
 </script>
+<style>
+.vc-sketch {
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) !important;
+}
+</style>
