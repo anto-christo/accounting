@@ -8,7 +8,7 @@ image: Ubuntu1804
 
 install:
   - sh: nvm install 8.12.0
-  - sh: npm i -g https://github.com/anto-christo/frappejs-cli#production-build
+  - sh: npm i -g https://github.com/frappejs/frappejs-cli
   - yarn
 
 build_script:
