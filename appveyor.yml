@@ -25,7 +25,7 @@ deploy:
   provider: GitHub
   auth_token:
     secure: /+43/Uo02xFON03fqbhjAbp/nqK2orZB0nd8iifboNzyCco01YNRwyKrTZIK9pMv
-  artifact: frappe-accounting-0.0.2-x86_64.AppImage
+  artifact: build/frappe-accounting-0.0.2-x86_64.AppImage
   draft: false
   prerelease: true
   on:
