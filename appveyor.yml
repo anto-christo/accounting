@@ -24,8 +24,8 @@ deploy:
   description: 'Ubuntu release'
   provider: GitHub
   auth_token:
-    secure: rxXh3UopYhGDH+mUpdBF/6K3AaYg0R5SGAt3fApi2rW7p1M6mf7lbL7PzyMajQ4o
-  artifact: build/frappe-accounting_0.0.2_amd64.deb
+    secure: /+43/Uo02xFON03fqbhjAbp/nqK2orZB0nd8iifboNzyCco01YNRwyKrTZIK9pMv
+  artifact: frappe-accounting-0.0.2-x86_64.AppImage
   draft: false
   prerelease: true
   on:
