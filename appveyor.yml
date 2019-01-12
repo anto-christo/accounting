@@ -16,7 +16,7 @@ build_script:
   - yarn dist
 
 artifacts:
-  - path: build/frappe-accounting_0.0.2_amd64.deb
+  - path: build/frappe-accounting-0.0.2-x86_64.AppImage
     name: FrappeAccountingDeb
 
 deploy:
